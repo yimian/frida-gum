@@ -989,17 +989,17 @@ gum_stalker_ensure_unwind_apis_instrumented (void)
 
   if (g_once_init_enter (&initialized))
   {
-    GumAttachReturn attach_ret G_GNUC_UNUSED;
+    GumReplaceReturn res G_GNUC_UNUSED;
 
     gum_exec_ctx_interceptor = gum_interceptor_obtain ();
 
-    attach_ret = gum_interceptor_replace (gum_exec_ctx_interceptor,
+    res = gum_interceptor_replace (gum_exec_ctx_interceptor,
         __gxx_personality_v0, gum_stalker_exception_personality, NULL);
-    g_assert (attach_ret == GUM_ATTACH_OK);
+    g_assert (res == GUM_REPLACE_OK);
 
-    attach_ret = gum_interceptor_replace (gum_exec_ctx_interceptor,
+    res = gum_interceptor_replace (gum_exec_ctx_interceptor,
         _Unwind_Find_FDE, gum_stalker_exception_find_fde, NULL);
-    g_assert (attach_ret == GUM_ATTACH_OK);
+    g_assert (res == GUM_REPLACE_OK);
 
     _gum_register_early_destructor (
         gum_stalker_deinit_unwind_apis_instrumentation);
