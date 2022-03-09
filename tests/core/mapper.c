@@ -110,7 +110,7 @@ main (gint argc,
   destructor =
       GSIZE_TO_POINTER (gum_darwin_mapper_destructor (mapper));
   entrypoint =
-      GSIZE_TO_POINTER (gum_darwin_mapper_resolve (mapper, "frida_agent_main"));
+      GSIZE_TO_POINTER (gum_darwin_mapper_resolve (mapper, "monda_main"));
 
   g_timer_start (timer);
   constructor ();
