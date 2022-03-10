@@ -4750,32 +4750,32 @@ TESTCASE (rpc_can_be_performed)
       "};");
   EXPECT_NO_MESSAGES ();
 
-  POST_MESSAGE ("[\"frida:rpc\",1,\"list\"]");
-  EXPECT_SEND_MESSAGE_WITH ("[\"frida:rpc\",1,\"ok\","
+  POST_MESSAGE ("[\"monda:rpc\",1,\"list\"]");
+  EXPECT_SEND_MESSAGE_WITH ("[\"monda:rpc\",1,\"ok\","
       "[\"foo\",\"bar\",\"badger\",\"returnNull\"]]");
 
-  POST_MESSAGE ("[\"frida:rpc\",2,\"call\",\"foo\",[1,2]]");
-  EXPECT_SEND_MESSAGE_WITH ("[\"frida:rpc\",2,\"ok\",3]");
+  POST_MESSAGE ("[\"monda:rpc\",2,\"call\",\"foo\",[1,2]]");
+  EXPECT_SEND_MESSAGE_WITH ("[\"monda:rpc\",2,\"ok\",3]");
 
-  POST_MESSAGE ("[\"frida:rpc\",3,\"call\",\"foo\",[1,-2]]");
-  EXPECT_SEND_MESSAGE_WITH_PREFIX ("[\"frida:rpc\",3,\"error\",\"no\",");
+  POST_MESSAGE ("[\"monda:rpc\",3,\"call\",\"foo\",[1,-2]]");
+  EXPECT_SEND_MESSAGE_WITH_PREFIX ("[\"monda:rpc\",3,\"error\",\"no\",");
 
-  POST_MESSAGE ("[\"frida:rpc\",4,\"call\",\"bar\",[3,4]]");
-  EXPECT_SEND_MESSAGE_WITH ("[\"frida:rpc\",4,\"ok\",7]");
+  POST_MESSAGE ("[\"monda:rpc\",4,\"call\",\"bar\",[3,4]]");
+  EXPECT_SEND_MESSAGE_WITH ("[\"monda:rpc\",4,\"ok\",7]");
 
-  POST_MESSAGE ("[\"frida:rpc\",5,\"call\",\"bar\",[3,-4]]");
-  EXPECT_SEND_MESSAGE_WITH_PREFIX ("[\"frida:rpc\",5,\"error\",\"nope\",");
+  POST_MESSAGE ("[\"monda:rpc\",5,\"call\",\"bar\",[3,-4]]");
+  EXPECT_SEND_MESSAGE_WITH_PREFIX ("[\"monda:rpc\",5,\"error\",\"nope\",");
 
-  POST_MESSAGE ("[\"frida:rpc\",6,\"call\",\"baz\",[]]");
-  EXPECT_SEND_MESSAGE_WITH ("[\"frida:rpc\",6,\"error\","
+  POST_MESSAGE ("[\"monda:rpc\",6,\"call\",\"baz\",[]]");
+  EXPECT_SEND_MESSAGE_WITH ("[\"monda:rpc\",6,\"error\","
       "\"unable to find method 'baz'\"]");
 
-  POST_MESSAGE ("[\"frida:rpc\",7,\"call\",\"badger\",[]]");
-  EXPECT_SEND_MESSAGE_WITH_PAYLOAD_AND_DATA ("[\"frida:rpc\",7,\"ok\",{}]",
+  POST_MESSAGE ("[\"monda:rpc\",7,\"call\",\"badger\",[]]");
+  EXPECT_SEND_MESSAGE_WITH_PAYLOAD_AND_DATA ("[\"monda:rpc\",7,\"ok\",{}]",
       "59 6f");
 
-  POST_MESSAGE ("[\"frida:rpc\",8,\"call\",\"returnNull\",[]]");
-  EXPECT_SEND_MESSAGE_WITH ("[\"frida:rpc\",8,\"ok\",null]");
+  POST_MESSAGE ("[\"monda:rpc\",8,\"call\",\"returnNull\",[]]");
+  EXPECT_SEND_MESSAGE_WITH ("[\"monda:rpc\",8,\"ok\",null]");
 }
 
 TESTCASE (message_can_be_sent)
