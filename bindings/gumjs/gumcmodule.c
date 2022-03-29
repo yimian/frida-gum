@@ -1099,7 +1099,7 @@ gum_gcc_cmodule_call_objcopy (GumGccCModule * self,
   const gchar * argv[] = {
     "objcopy",
     "-O", "binary",
-    "--only-section=.frida",
+    "--only-section=.monda",
     "a.out",
     "module",
     NULL
@@ -1153,7 +1153,7 @@ gum_write_linker_script (FILE * file,
 
   fprintf (printer.file,
       "SECTIONS {\n"
-      "  .frida 0x%zx: {\n"
+      "  .monda 0x%zx: {\n"
       "    *(.text*)\n"
       "    *(.data)\n"
       "    *(.bss)\n"
